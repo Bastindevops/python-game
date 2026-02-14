@@ -1,0 +1,57 @@
+i<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Funny Coffee Game ☕</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 150px;
+            background-color: #f8f9fa;
+        }
+        h1 {
+            color: #ff5733;
+        }
+        button {
+            font-size: 18px;
+            padding: 10px 20px;
+            margin: 20px;
+            cursor: pointer;
+        }
+        #no-btn {
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <h1>Are you coming with me for coffee? ☕</h1>
+    <button id="yes-btn" onclick="alert('Yay! Let\'s go! 😄')">Yes</button>
+    <button id="no-btn">No</button>
+
+    <script>
+        const noBtn = document.getElementById("no-btn");
+
+        document.body.addEventListener('mousemove', (e) => {
+            const mouseX = e.clientX;
+            const mouseY = e.clientY;
+
+            const btnRect = noBtn.getBoundingClientRect();
+            const btnX = btnRect.left + btnRect.width / 2;
+            const btnY = btnRect.top + btnRect.height / 2;
+
+            const dx = mouseX - btnX;
+            const dy = mouseY - btnY;
+            const distance = Math.sqrt(dx*dx + dy*dy);
+
+            if(distance < 100){
+                const newX = Math.random() * (window.innerWidth - btnRect.width);
+                const newY = Math.random() * (window.innerHeight - btnRect.height);
+                noBtn.style.left = newX + "px";
+                noBtn.style.top = newY + "px";
+            }
+        });
+    </script>
+</body>
+</html>
+

@@ -1,22 +1,29 @@
 pipeline {
     agent any
 
+    environment {
+        REPO_URL = "https://github.com/Bastindevops/python-game.git"
+    }
+
     stages {
-        stage('Clone') {
+
+        stage('Checkout Code') {
             steps {
-                git 'https://github.com/yourusername/yourrepo.git'
+                git credentialsId: 'BK',
+                    url: "${REPO_URL}",
+                    branch: 'main'
             }
         }
 
         stage('Build Docker Image') {
             steps {
-                sh 'docker build -t myapp .'
+                sh 'docker build -t myapp:latest .'
             }
         }
 
         stage('Run Container') {
             steps {
-                sh 'docker run -d -p 3001:3001 myapp'
+                sh 'docker run -d -p 3001:3001 myapp:latest'
             }
         }
     }

@@ -27,12 +27,12 @@ pipeline {
             }
         }
 
-        pipeline {
-    agent any
+      stage('Push Image') {
+            steps {
+                sh "docker push ${IMAGE_NAME}"
+            }
+        }
+    }
+    }
 
-    environment {
-        IMAGE_NAME = "YOUR_DOCKERHUB_USERNAME/myapp:latest"
-        DOCKER_CREDS = credentials('dockerhub')
-    }
-    }
 }

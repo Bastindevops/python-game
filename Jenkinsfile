@@ -26,5 +26,13 @@ pipeline {
                 sh 'docker run -d -p 3001:3001 myapp:latest'
             }
         }
+
+        pipeline {
+    agent any
+
+    environment {
+        IMAGE_NAME = "YOUR_DOCKERHUB_USERNAME/myapp:latest"
+        DOCKER_CREDS = credentials('dockerhub')
+    }
     }
 }

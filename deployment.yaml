@@ -1,24 +1,22 @@
-apiVersion: apps/v4
+apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: game-app
-  namespace: argocd
+  name: python-game-deployment
+  namespace: default
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: game-app
+      app: python-game
   template:
     metadata:
       labels:
-        app: game-app
+        app: python-game
     spec:
-      # INGE THAAN NAMA CREATE PANNA SECRET-AH LINK PANROM
       imagePullSecrets:
       - name: regcred
-
       containers:
-      - name: game-app
-        image: gameapplication:v1
+      - name: python-game
+        image: devop93/gameapplication:v1  # <--- Ungaloda actual Docker image name & tag-ah inga podunga
         ports:
-        - containerPort: 8500
+        - containerPort: 3001                         # <--- Ungaloda application run aagura port-ah podunga

@@ -1,0 +1,24 @@
+apiVersion: apps/v4
+kind: Deployment
+metadata:
+  name: game-app
+  namespace: argocd
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: game-app
+  template:
+    metadata:
+      labels:
+        app: game-app
+    spec:
+      # INGE THAAN NAMA CREATE PANNA SECRET-AH LINK PANROM
+      imagePullSecrets:
+      - name: regcred
+
+      containers:
+      - name: game-app
+        image: gameapplication:v1
+        ports:
+        - containerPort: 8500

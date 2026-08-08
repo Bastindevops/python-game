@@ -19,7 +19,7 @@ pipeline {
 
         stage('Docker Login') {
             steps {
-                sh '''
+                bat '''
                 echo $DOCKER_CREDS_PSW | docker login -u $DOCKER_CREDS_USR --password-stdin
                 '''
             }
@@ -27,13 +27,13 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                sh "docker build -t ${IMAGE_NAME} ."
+                bat "docker build -t ${IMAGE_NAME} ."
             }
         }
 
         stage('Run Container') {
             steps {
-                sh '''
+                bat '''
                 docker rm -f myapp || true
                 docker run -d --name myapp -p 3001:3001 ${IMAGE_NAME}
                 '''
@@ -42,14 +42,14 @@ pipeline {
 
         stage('Push Image') {
             steps {
-                sh "docker push ${IMAGE_NAME}"
+                bat "docker push ${IMAGE_NAME}"
             }
         }
     }
 
     post {
         always {
-            sh 'docker logout'
+            bat 'docker logout'
         }
     }
 }

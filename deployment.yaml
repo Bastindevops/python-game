@@ -18,6 +18,5 @@ spec:
       containers:
       - name: python-game
         image: devop93/gameapplication:v1  # <--- Ungaloda actual Docker image name & tag-ah inga podunga
-        imagePullPolicy: Always
         ports:
         - containerPort: 3001                         # <--- Ungaloda application run aagura port-ah podunga

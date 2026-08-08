@@ -17,6 +17,6 @@ spec:
       - name: regcred
       containers:
       - name: python-game
-        image: devop93/gameapplication:v1  # <--- Ungaloda actual Docker image name & tag-ah inga podunga
+        image: devop93/gameapplication:v2  # <--- Ungaloda actual Docker image name & tag-ah inga podunga
         ports:
         - containerPort: 3001                         # <--- Ungaloda application run aagura port-ah podunga

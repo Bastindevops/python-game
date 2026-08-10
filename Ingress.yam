@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: my-app-ingress
+  annotations:
+    # Ithu thaan magic! Ithu cert-manager-ah trigger pannum
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  tls:
+  - hosts:
+    - gensee.shop
+    - www.gensee.shop
+    secretName: gensee-tls-secret  # Cert-manager intha secret-la certificate-ah store pannum
+  rules:
+  - host: gensee.shop
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: my-service-name
+            port:
+              number: 80

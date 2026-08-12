@@ -1,19 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: calculator-deployment
+  name: python-game-deployment
+  namespace: default
 spec:
-  replicas: 2
+  replicas: 3
   selector:
     matchLabels:
-      app: java-calculator
+      app: python-game
   template:
     metadata:
       labels:
-        app: java-calculator
+        app: python-game
     spec:
+      imagePullSecrets:
+      - name: regcred
       containers:
-      - name: calculator
-        image: devop93/java-calculator:v1  # Replace with your Docker Hub username
-        ports:
-        - containerPort: 9200
+      - name: python-game
+        image: devop93/gameapplication:v2  # <--- Ungaloda actual Docker image name & tag-ah inga podunga
+        - containerPort: 3001      

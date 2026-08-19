@@ -17,5 +17,6 @@ spec:
       - name: regcred
       containers:
       - name: python-game
-        image: devop93/gameapplication:v1  # <--- Ungaloda actual Docker image name & tag-ah inga podunga
-        - containerPort: 3001      
+        image: devop93/gameapplication:v1
+        ports:
+        - containerPort: 3001
